@@ -126,9 +126,11 @@ const BookAmbulance = () => {
 
   // Remove the ambulance from "locations" based on its unique ID
   const handleClick = (id) => {
+    alert("Ambulance Booked Successfully!!")
     setLocations((prevLocations) =>
       prevLocations.filter((ambulance) => ambulance.id !== id)
     );
+
   };
 
   return (
