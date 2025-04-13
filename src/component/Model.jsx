@@ -1,20 +1,13 @@
 import React, { useState } from "react";
 
-const Model = ({setShowModel, setLocations , id ,locations}) => {
-  console.log(locations[id]?.name);
+const Model = ({ setShowModel, setLocations, id: ambulanceId, locations })  => {
   const [form, setForm] = useState({
     name: "",
     address: "",
     contact: "",
   });
   const ModelClose = () => {
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length) {
-      setErrors(validationErrors);
-    } else {
-      console.log("Submitting:", form);
       setShowModel(false);
-    }
   }
 
   const [errors, setErrors] = useState({});
@@ -49,21 +42,19 @@ const Model = ({setShowModel, setLocations , id ,locations}) => {
     if (Object.keys(validationErrors).length) {
       setErrors(validationErrors);
     } else {
-      // All good – do whatever you need with `form`
       console.log("Submitting:", form);
       alert(`
         Ambulance Booked Successfully!
         !!Please Keep The Note Of Below Details!!
-        
-        driverName : ${locations[id]?.name},
-        driverContact : ${locations[id]?.contact}
-        `);
-
-      setLocations((prev) => prev.filter((amb) => amb.id !== id));
+  
+        driverName : ${locations.find((amb) => amb.id === ambulanceId)?.name},
+        driverContact : ${locations.find((amb) => amb.id === ambulanceId)?.contact}
+      `);
+      setLocations((prev) => prev.filter((amb) => amb.id !== ambulanceId));
       setShowModel(false);
-      // e.g. close modal, clear form, send to server, etc.
     }
   };
+  
 
   return (
     <div className=" w-full rounded-3xl absolute  top-[40%] left-1/2 z-[999] -translate-x-[50%] -translate-y-[50%] flex items-center justify-center">

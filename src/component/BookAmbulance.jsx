@@ -72,7 +72,7 @@ const BookAmbulance = () => {
     );
   }, []);
 
- // 3) Filter all ambulances within 10 km—no deduplication
+  // 3) Filter all ambulances within 10 km—no deduplication
   useEffect(() => {
     if (!userLocation || locations.length === 0) return;
 
@@ -91,14 +91,13 @@ const BookAmbulance = () => {
 
     setNearbyLocations(filtered);
   }, [userLocation, locations]);
-    console.log(locations);
+  console.log(locations);
 
-  const handleClick = (id) => {
+  const handleClick = (ambulanceId) => {
     setShowModel(true);
-    setCurrentRemovedAmbulance(id);
+    setCurrentRemovedAmbulance(ambulanceId);
   };
 
- 
   return (
     <div className="relative">
       {userLocation && (
@@ -138,11 +137,11 @@ const BookAmbulance = () => {
 
         {nearbyLocations.length > 0 ? (
           <ul>
-            {nearbyLocations.map((amb,id) => (
+            {nearbyLocations.map((amb, id) => (
               <li
                 key={amb.id}
                 className="p-2 text-2xl cursor-pointer"
-                onClick={() => handleClick(id)}
+                onClick={() => handleClick(amb.id)}
               >
                 {amb.name} — {amb.distance.toFixed(2)} km
               </li>
@@ -153,7 +152,14 @@ const BookAmbulance = () => {
         )}
       </div>
 
-      {ShowModel && <Model setShowModel={setShowModel}  setLocations={setLocations} id={CurrentRemovedAmbulance} locations={locations}/>}
+      {ShowModel && (
+        <Model
+          setShowModel={setShowModel}
+          setLocations={setLocations}
+          id={CurrentRemovedAmbulance}
+          locations={locations}
+        />
+      )}
     </div>
   );
 };

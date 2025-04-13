@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./component/LandingPage";
 import BookAmbulance from "./component/BookAmbulance";
 import RegisterAmbulance from "./component/RegisterAmbulance";
-import Map from "./component/Map";
 
 function App() {
 
