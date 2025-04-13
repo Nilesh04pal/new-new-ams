@@ -3,5 +3,8 @@
 
 @font-face {
     font-family: Header;
-    src: url('./travel-agency-font.woff');
+    src: url('/travel-agency-font.woff2') format('woff2'),
+         url('/travel-agency-font.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
